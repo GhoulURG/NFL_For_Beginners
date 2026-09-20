@@ -1,6 +1,6 @@
 ```css
 /* ========================================
-   NFL FOR BEGINNERS - CSS STYLESHEET
+   NFL FOR BEGINNERS - RESPONSIVE CSS
    ======================================== */
 
 /* Page-wide styles */
@@ -30,6 +30,11 @@ h1 {
 
 /* Navigation */
 nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-top: 15px;
 }
 
@@ -37,7 +42,6 @@ nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    margin: 0 10px;
     padding: 8px 12px;
     border-radius: 5px;
 }
@@ -55,7 +59,7 @@ main {
     padding: 0 20px;
 }
 
-/* Individual sections */
+/* Sections */
 section {
     background-color: white;
     margin-bottom: 30px;
@@ -140,5 +144,74 @@ footer {
 
 footer p {
     margin: 0;
+}
+
+
+/* ========================================
+   MOBILE / SMALL SCREEN STYLES
+   ======================================== */
+
+@media (max-width: 600px) {
+
+    /* Smaller header spacing */
+    header {
+        padding: 20px 10px;
+    }
+
+    /* Smaller website title */
+    h1 {
+        font-size: 30px;
+    }
+
+    /* Stack navigation links vertically */
+    nav {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    nav a {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+
+    /* Reduce main content spacing */
+    main {
+        margin: 20px auto;
+        padding: 0 10px;
+    }
+
+    /* Reduce section padding */
+    section {
+        padding: 18px;
+        margin-bottom: 20px;
+    }
+
+    /* Smaller headings */
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 19px;
+    }
+
+    /* Slightly smaller body text */
+    body {
+        font-size: 15px;
+    }
+
+    /* Make table text smaller on phones */
+    th,
+    td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    /* Smaller footer */
+    footer {
+        padding: 15px 10px;
+    }
 }
 ```

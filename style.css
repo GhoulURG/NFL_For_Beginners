@@ -1,7 +1,7 @@
-```css
 /* ========================================
    NFL FOR BEGINNERS - RESPONSIVE CSS
    ======================================== */
+
 
 /* Page-wide styles */
 body {
@@ -13,6 +13,7 @@ body {
     margin: 0;
 }
 
+
 /* Header */
 header {
     background-color: #0b1f3a;
@@ -22,11 +23,13 @@ header {
     border-bottom: 5px solid #c8102e;
 }
 
+
 /* Main website title */
 h1 {
     font-size: 40px;
     margin: 0 0 15px 0;
 }
+
 
 /* Navigation */
 nav {
@@ -38,6 +41,7 @@ nav {
     margin-top: 15px;
 }
 
+
 nav a {
     color: white;
     text-decoration: none;
@@ -46,11 +50,13 @@ nav a {
     border-radius: 5px;
 }
 
+
 /* Navigation hover effect */
 nav a:hover {
     background-color: #c8102e;
     color: white;
 }
+
 
 /* Main content */
 main {
@@ -59,7 +65,8 @@ main {
     padding: 0 20px;
 }
 
-/* Sections */
+
+/* Individual sections */
 section {
     background-color: white;
     margin-bottom: 30px;
@@ -67,6 +74,7 @@ section {
     border: 1px solid #d6d9dd;
     border-radius: 8px;
 }
+
 
 /* Section headings */
 h2 {
@@ -77,17 +85,20 @@ h2 {
     padding-bottom: 8px;
 }
 
+
 h3 {
     color: #c8102e;
     font-size: 21px;
     margin-top: 25px;
 }
 
+
 /* Paragraphs */
 p {
     line-height: 1.7;
     margin-bottom: 15px;
 }
+
 
 /* Images */
 img {
@@ -99,15 +110,18 @@ img {
     border-radius: 8px;
 }
 
+
 /* Lists */
 ul,
 ol {
     padding-left: 30px;
 }
 
+
 li {
     margin-bottom: 8px;
 }
+
 
 /* Table */
 table {
@@ -116,6 +130,7 @@ table {
     margin-top: 20px;
 }
 
+
 th,
 td {
     border: 1px solid #b8bec6;
@@ -123,15 +138,18 @@ td {
     text-align: left;
 }
 
+
 th {
     background-color: #0b1f3a;
     color: white;
     font-weight: bold;
 }
 
+
 tr:nth-child(even) {
     background-color: #f2f4f7;
 }
+
 
 /* Footer */
 footer {
@@ -142,14 +160,102 @@ footer {
     margin-top: 30px;
 }
 
+
 footer p {
     margin: 0;
 }
 
 
 /* ========================================
+   HOMEWORK 6 - DOM INTERACTION STYLES
+   ======================================== */
+
+
+/* Interactive area */
+.interactive-area {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #f2f4f7;
+    border: 1px solid #d6d9dd;
+    border-radius: 8px;
+}
+
+
+/* Interactive buttons */
+.interactive-area button {
+    background-color: #0b1f3a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 8px 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.interactive-area button:hover {
+    background-color: #c8102e;
+}
+
+
+/* Text input fields */
+.interactive-area input {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #b8bec6;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+/* Interactive sections */
+.team-input-area,
+.team-list-area {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #d6d9dd;
+}
+
+
+/* ========================================
+   JAVASCRIPT STATE CLASS
+   ======================================== */
+
+
+/* This class is added and removed by JavaScript */
+.highlighted {
+    background-color: #fff1c7;
+    border: 2px solid #c8102e;
+    border-radius: 5px;
+    padding: 12px;
+}
+
+
+/* Newly added teams */
+#custom-team-list li {
+    margin-bottom: 8px;
+}
+
+
+/* CSS class for dynamically created teams */
+.new-team {
+    color: #0b1f3a;
+    font-weight: bold;
+    background-color: #e4f3e7;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+
+/* ========================================
    MOBILE / SMALL SCREEN STYLES
    ======================================== */
+
 
 @media (max-width: 600px) {
 
@@ -158,16 +264,19 @@ footer p {
         padding: 20px 10px;
     }
 
+
     /* Smaller website title */
     h1 {
         font-size: 30px;
     }
+
 
     /* Stack navigation links vertically */
     nav {
         flex-direction: column;
         gap: 5px;
     }
+
 
     nav a {
         display: block;
@@ -176,11 +285,13 @@ footer p {
         padding: 10px;
     }
 
+
     /* Reduce main content spacing */
     main {
         margin: 20px auto;
         padding: 0 10px;
     }
+
 
     /* Reduce section padding */
     section {
@@ -188,19 +299,23 @@ footer p {
         margin-bottom: 20px;
     }
 
+
     /* Smaller headings */
     h2 {
         font-size: 24px;
     }
 
+
     h3 {
         font-size: 19px;
     }
+
 
     /* Slightly smaller body text */
     body {
         font-size: 15px;
     }
+
 
     /* Make table text smaller on phones */
     th,
@@ -209,9 +324,15 @@ footer p {
         font-size: 14px;
     }
 
+
     /* Smaller footer */
     footer {
         padding: 15px 10px;
     }
+
+
+    /* Smaller interactive area */
+    .interactive-area {
+        padding: 15px;
+    }
 }
-```

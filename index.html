@@ -21,9 +21,9 @@
             <a href="#rules">Rules</a>
             <a href="#positions">Positions</a>
             <a href="#teams">Teams</a>
+            <a href="#fan-form">Fan Form</a>
         </nav>
     </header>
-
 
     <main>
 
@@ -40,8 +40,8 @@
             <p>
                 The National Football League, or NFL, is the highest level
                 of professional American football in the United States.
-                The league is made up of 32 teams divided between the
-                American Football Conference and the National Football Conference.
+                The league has 32 teams divided between the American
+                Football Conference and the National Football Conference.
             </p>
 
             <p>
@@ -50,7 +50,6 @@
                 and special teams to move the football and prevent their
                 opponent from scoring.
             </p>
-
 
             <!-- Homework 6 Interactive Features -->
             <div class="interactive-area">
@@ -64,7 +63,6 @@
                 <button id="fact-button" type="button">
                     Show NFL Fact
                 </button>
-
 
                 <div class="team-input-area">
 
@@ -80,12 +78,11 @@
                         placeholder="Example: Buffalo Bills"
                     >
 
-                    <p id="team-message">
+                    <p id="team-message" aria-live="polite">
                         Your team message will appear here.
                     </p>
 
                 </div>
-
 
                 <div class="team-list-area">
 
@@ -115,7 +112,6 @@
             </div>
 
         </section>
-
 
         <!-- Rules Section -->
         <section id="rules">
@@ -150,7 +146,6 @@
 
         </section>
 
-
         <!-- Positions Section -->
         <section id="positions">
 
@@ -176,13 +171,12 @@
 
             <ul>
                 <li>Defensive Lineman - Rushes the quarterback and stops runners.</li>
-                <li>Linebacker - Defends against both running and passing plays.</li>
+                <li>Linebacker - Defends against running and passing plays.</li>
                 <li>Cornerback - Defends wide receivers.</li>
                 <li>Safety - Provides deep defensive coverage.</li>
             </ul>
 
         </section>
-
 
         <!-- Teams Section -->
         <section id="teams">
@@ -206,7 +200,6 @@
                 </thead>
 
                 <tbody>
-
                     <tr>
                         <td>Kansas City Chiefs</td>
                         <td>AFC</td>
@@ -230,22 +223,191 @@
                         <td>NFC</td>
                         <td>NFC North</td>
                     </tr>
-
                 </tbody>
 
             </table>
 
         </section>
 
+        <!-- Homework 7: Fan Registration Form -->
+        <section id="fan-form">
+
+            <h2>NFL Fan Registration</h2>
+
+            <p>
+                Tell us a little about yourself as a football fan.
+                This practice form checks your information and displays
+                a summary when the form is completed successfully.
+            </p>
+
+            <form id="fan-registration-form" novalidate>
+
+                <div class="form-group">
+                    <label for="fan-name">Full Name (required)</label>
+
+                    <input
+                        type="text"
+                        id="fan-name"
+                        name="fanName"
+                        autocomplete="name"
+                        required
+                        minlength="2"
+                        maxlength="60"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="fan-email">Email Address (required)</label>
+
+                    <input
+                        type="email"
+                        id="fan-email"
+                        name="fanEmail"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="fan-age">Age (required)</label>
+
+                    <input
+                        type="number"
+                        id="fan-age"
+                        name="fanAge"
+                        min="13"
+                        max="120"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="fan-team">Favorite NFL Team (required)</label>
+
+                    <select id="fan-team" name="favoriteTeam" required>
+                        <option value="">Choose a team</option>
+                        <option value="Arizona Cardinals">Arizona Cardinals</option>
+                        <option value="Atlanta Falcons">Atlanta Falcons</option>
+                        <option value="Baltimore Ravens">Baltimore Ravens</option>
+                        <option value="Buffalo Bills">Buffalo Bills</option>
+                        <option value="Carolina Panthers">Carolina Panthers</option>
+                        <option value="Chicago Bears">Chicago Bears</option>
+                        <option value="Cincinnati Bengals">Cincinnati Bengals</option>
+                        <option value="Cleveland Browns">Cleveland Browns</option>
+                        <option value="Dallas Cowboys">Dallas Cowboys</option>
+                        <option value="Denver Broncos">Denver Broncos</option>
+                        <option value="Detroit Lions">Detroit Lions</option>
+                        <option value="Green Bay Packers">Green Bay Packers</option>
+                        <option value="Houston Texans">Houston Texans</option>
+                        <option value="Indianapolis Colts">Indianapolis Colts</option>
+                        <option value="Jacksonville Jaguars">Jacksonville Jaguars</option>
+                        <option value="Kansas City Chiefs">Kansas City Chiefs</option>
+                        <option value="Las Vegas Raiders">Las Vegas Raiders</option>
+                        <option value="Los Angeles Chargers">Los Angeles Chargers</option>
+                        <option value="Los Angeles Rams">Los Angeles Rams</option>
+                        <option value="Miami Dolphins">Miami Dolphins</option>
+                        <option value="Minnesota Vikings">Minnesota Vikings</option>
+                        <option value="New England Patriots">New England Patriots</option>
+                        <option value="New Orleans Saints">New Orleans Saints</option>
+                        <option value="New York Giants">New York Giants</option>
+                        <option value="New York Jets">New York Jets</option>
+                        <option value="Philadelphia Eagles">Philadelphia Eagles</option>
+                        <option value="Pittsburgh Steelers">Pittsburgh Steelers</option>
+                        <option value="San Francisco 49ers">San Francisco 49ers</option>
+                        <option value="Seattle Seahawks">Seattle Seahawks</option>
+                        <option value="Tampa Bay Buccaneers">Tampa Bay Buccaneers</option>
+                        <option value="Tennessee Titans">Tennessee Titans</option>
+                        <option value="Washington Commanders">Washington Commanders</option>
+                    </select>
+                </div>
+
+                <fieldset class="form-group">
+                    <legend>Preferred Content (required)</legend>
+
+                    <label class="choice-label">
+                        <input
+                            type="radio"
+                            name="contentPreference"
+                            value="Rules and Basics"
+                            required
+                        >
+                        Rules and Basics
+                    </label>
+
+                    <label class="choice-label">
+                        <input
+                            type="radio"
+                            name="contentPreference"
+                            value="Teams and Players"
+                        >
+                        Teams and Players
+                    </label>
+
+                    <label class="choice-label">
+                        <input
+                            type="radio"
+                            name="contentPreference"
+                            value="Game Strategy"
+                        >
+                        Game Strategy
+                    </label>
+                </fieldset>
+
+                <div class="form-group">
+                    <label for="fan-comments">
+                        What would you like to learn about the NFL?
+                        (required)
+                    </label>
+
+                    <textarea
+                        id="fan-comments"
+                        name="fanComments"
+                        rows="4"
+                        minlength="10"
+                        maxlength="500"
+                        required
+                        placeholder="Write at least 10 characters..."
+                    ></textarea>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="choice-label" for="fan-agreement">
+                        <input
+                            type="checkbox"
+                            id="fan-agreement"
+                            name="fanAgreement"
+                            required
+                        >
+                        I confirm that the information I entered is correct.
+                    </label>
+                </div>
+
+                <button type="submit">Submit Fan Form</button>
+
+                <p
+                    id="form-errors"
+                    class="form-feedback error-message"
+                    aria-live="polite"
+                    role="alert"
+                ></p>
+
+                <div
+                    id="form-success"
+                    class="form-feedback success-message"
+                    aria-live="polite"
+                    role="status"
+                    tabindex="-1"
+                    hidden
+                ></div>
+
+            </form>
+
+        </section>
+
     </main>
 
-
     <footer>
-
-        <p>
-            NFL for Beginners - Created for Application Development II
-        </p>
-
+        <p>NFL for Beginners - Created for Application Development II</p>
     </footer>
 
 </body>

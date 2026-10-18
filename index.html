@@ -22,6 +22,7 @@
             <a href="#positions">Positions</a>
             <a href="#teams">Teams</a>
             <a href="#fan-form">Fan Form</a>
+            <a href="#api-explorer">API Explorer</a>
         </nav>
     </header>
 
@@ -29,7 +30,6 @@
 
         <!-- About Section -->
         <section id="about">
-
             <h2>What Is the NFL?</h2>
 
             <img
@@ -53,7 +53,6 @@
 
             <!-- Homework 6 Interactive Features -->
             <div class="interactive-area">
-
                 <h3>Explore the NFL</h3>
 
                 <p id="nfl-fact" data-fact="0">
@@ -65,7 +64,6 @@
                 </button>
 
                 <div class="team-input-area">
-
                     <h3>Favorite Team</h3>
 
                     <label for="favorite-team-input">
@@ -81,11 +79,9 @@
                     <p id="team-message" aria-live="polite">
                         Your team message will appear here.
                     </p>
-
                 </div>
 
                 <div class="team-list-area">
-
                     <h3>My NFL Team List</h3>
 
                     <label for="new-team-input">
@@ -106,16 +102,12 @@
                         <li>Kansas City Chiefs</li>
                         <li>Buffalo Bills</li>
                     </ul>
-
                 </div>
-
             </div>
-
         </section>
 
         <!-- Rules Section -->
         <section id="rules">
-
             <h2>How Football Works</h2>
 
             <p>
@@ -143,12 +135,10 @@
                 <li>Field goal - 3 points</li>
                 <li>Safety - 2 points</li>
             </ul>
-
         </section>
 
         <!-- Positions Section -->
         <section id="positions">
-
             <h2>Football Positions</h2>
 
             <p>
@@ -175,12 +165,10 @@
                 <li>Cornerback - Defends wide receivers.</li>
                 <li>Safety - Provides deep defensive coverage.</li>
             </ul>
-
         </section>
 
         <!-- Teams Section -->
         <section id="teams">
-
             <h2>NFL Teams</h2>
 
             <p>
@@ -190,7 +178,6 @@
             </p>
 
             <table>
-
                 <thead>
                     <tr>
                         <th>Team</th>
@@ -224,14 +211,11 @@
                         <td>NFC North</td>
                     </tr>
                 </tbody>
-
             </table>
-
         </section>
 
         <!-- Homework 7: Fan Registration Form -->
         <section id="fan-form">
-
             <h2>NFL Fan Registration</h2>
 
             <p>
@@ -355,8 +339,7 @@
 
                 <div class="form-group">
                     <label for="fan-comments">
-                        What would you like to learn about the NFL?
-                        (required)
+                        What would you like to learn about the NFL? (required)
                     </label>
 
                     <textarea
@@ -401,7 +384,76 @@
                 ></div>
 
             </form>
+        </section>
 
+        <!-- Homework 8: External API -->
+        <section id="api-explorer">
+            <h2>NFL Learning Post Explorer</h2>
+
+            <p>
+                This section retrieves sample posts from an external testing
+                API. The posts are examples of how a website can request
+                information from another service.
+            </p>
+
+            <button id="load-posts-button" type="button">
+                Load Learning Posts
+            </button>
+
+            <p id="posts-status" class="api-status" aria-live="polite">
+                Loading sample posts...
+            </p>
+
+            <div id="posts-container" class="posts-grid"></div>
+
+            <hr>
+
+            <h3>Create a Sample Post</h3>
+
+            <p>
+                Enter a title and message to send a POST request to
+                JSONPlaceholder. The returned record is simulated and
+                is not permanently stored.
+            </p>
+
+            <form id="api-post-form">
+                <div class="form-group">
+                    <label for="api-post-title">Post Title (required)</label>
+
+                    <input
+                        type="text"
+                        id="api-post-title"
+                        name="postTitle"
+                        required
+                        maxlength="100"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="api-post-body">Post Message (required)</label>
+
+                    <textarea
+                        id="api-post-body"
+                        name="postBody"
+                        rows="4"
+                        required
+                        maxlength="1000"
+                    ></textarea>
+                </div>
+
+                <button type="submit" id="submit-post-button">
+                    Send POST Request
+                </button>
+            </form>
+
+            <p
+                id="post-status"
+                class="api-status"
+                aria-live="polite"
+                role="status"
+            ></p>
+
+            <div id="created-post-container"></div>
         </section>
 
     </main>
@@ -411,5 +463,4 @@
     </footer>
 
 </body>
-
 </html>

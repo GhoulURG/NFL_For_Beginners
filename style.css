@@ -2,7 +2,6 @@
    NFL FOR BEGINNERS - RESPONSIVE CSS
    ======================================== */
 
-/* Page-wide styles */
 body {
     background-color: #f2f4f7;
     color: #222222;
@@ -12,7 +11,6 @@ body {
     margin: 0;
 }
 
-/* Header */
 header {
     background-color: #0b1f3a;
     color: white;
@@ -21,7 +19,6 @@ header {
     border-bottom: 5px solid #c8102e;
 }
 
-/* Main title */
 h1 {
     font-size: 40px;
     margin: 0 0 15px 0;
@@ -57,7 +54,6 @@ main {
     padding: 0 20px;
 }
 
-/* Sections */
 section {
     background-color: white;
     margin-bottom: 30px;
@@ -66,7 +62,6 @@ section {
     border-radius: 8px;
 }
 
-/* Headings */
 h2 {
     color: #0b1f3a;
     font-size: 28px;
@@ -81,7 +76,6 @@ h3 {
     margin-top: 25px;
 }
 
-/* Paragraphs */
 p {
     line-height: 1.7;
     margin-bottom: 15px;
@@ -107,7 +101,7 @@ li {
     margin-bottom: 8px;
 }
 
-/* Table */
+/* NFL teams table */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -213,7 +207,8 @@ footer p {
    HOMEWORK 7 - FAN REGISTRATION FORM
    ======================================== */
 
-#fan-registration-form {
+#fan-registration-form,
+#api-post-form {
     margin-top: 20px;
 }
 
@@ -222,7 +217,8 @@ footer p {
 }
 
 #fan-registration-form label,
-#fan-registration-form legend {
+#fan-registration-form legend,
+#api-post-form label {
     display: block;
     color: #0b1f3a;
     font-weight: bold;
@@ -233,7 +229,9 @@ footer p {
 #fan-registration-form input[type="email"],
 #fan-registration-form input[type="number"],
 #fan-registration-form select,
-#fan-registration-form textarea {
+#fan-registration-form textarea,
+#api-post-form input[type="text"],
+#api-post-form textarea {
     display: block;
     width: 100%;
     max-width: 500px;
@@ -245,13 +243,16 @@ footer p {
     background-color: white;
 }
 
-#fan-registration-form textarea {
+#fan-registration-form textarea,
+#api-post-form textarea {
     resize: vertical;
 }
 
 #fan-registration-form input:focus,
 #fan-registration-form select:focus,
-#fan-registration-form textarea:focus {
+#fan-registration-form textarea:focus,
+#api-post-form input:focus,
+#api-post-form textarea:focus {
     outline: 2px solid #0b1f3a;
     outline-offset: 2px;
 }
@@ -277,7 +278,8 @@ footer p {
     flex-shrink: 0;
 }
 
-#fan-registration-form button[type="submit"] {
+#fan-registration-form button[type="submit"],
+#api-post-form button[type="submit"] {
     background-color: #0b1f3a;
     color: white;
     border: none;
@@ -288,7 +290,8 @@ footer p {
     cursor: pointer;
 }
 
-#fan-registration-form button[type="submit"]:hover {
+#fan-registration-form button[type="submit"]:hover,
+#api-post-form button[type="submit"]:hover {
     background-color: #c8102e;
 }
 
@@ -316,6 +319,111 @@ footer p {
 
 [hidden] {
     display: none !important;
+}
+
+/* ========================================
+   API DATA EXPLORER - HOMEWORK 8
+   ======================================== */
+
+#api-explorer button {
+    background-color: #0b1f3a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 11px 16px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#api-explorer button:hover {
+    background-color: #c8102e;
+}
+
+#api-explorer button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+#api-explorer hr {
+    border: 0;
+    border-top: 1px solid #d6d9dd;
+    margin: 30px 0;
+}
+
+.api-status {
+    padding: 12px;
+    border-radius: 5px;
+    overflow-wrap: anywhere;
+}
+
+.api-status:empty {
+    display: none;
+}
+
+.api-loading {
+    background-color: #fff1c7;
+    border: 1px solid #c99b22;
+    color: #5c4300;
+}
+
+.api-error {
+    background-color: #fff0f0;
+    border: 1px solid #c8102e;
+    color: #8a1022;
+}
+
+.api-success {
+    background-color: #e4f3e7;
+    border: 1px solid #438654;
+    color: #155724;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.api-post-card {
+    min-width: 0;
+    padding: 18px;
+    background-color: #f2f4f7;
+    border: 1px solid #d6d9dd;
+    border-left: 4px solid #c8102e;
+    border-radius: 6px;
+    overflow-wrap: anywhere;
+}
+
+.api-post-card h3 {
+    margin-top: 0;
+    color: #0b1f3a;
+    font-size: 19px;
+}
+
+.api-post-card p {
+    margin-bottom: 0;
+}
+
+.api-post-id {
+    color: #555555;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.created-post-card {
+    margin-top: 18px;
+    padding: 18px;
+    border: 2px solid #438654;
+    border-radius: 6px;
+    background-color: #e4f3e7;
+    overflow-wrap: anywhere;
+}
+
+.created-post-card h4 {
+    margin-top: 0;
+    color: #155724;
 }
 
 /* ========================================
@@ -377,5 +485,9 @@ footer p {
 
     .interactive-area {
         padding: 15px;
+    }
+
+    .posts-grid {
+        grid-template-columns: 1fr;
     }
 }

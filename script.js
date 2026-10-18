@@ -121,13 +121,11 @@ factButton.addEventListener("click", function () {
     let factIndex = Number(nflFact.getAttribute("data-fact"));
 
     nflFact.textContent = interactiveNFLFacts[factIndex];
-
     nflFact.classList.add("highlighted");
 
     console.log("NFL fact displayed:", interactiveNFLFacts[factIndex]);
 
     factIndex = (factIndex + 1) % interactiveNFLFacts.length;
-
     nflFact.setAttribute("data-fact", String(factIndex));
 });
 
@@ -184,7 +182,7 @@ addTeamButton.addEventListener("click", function () {
 
 
 // ========================================
-// HOMEWORK 7 - SELECT THE FORM ELEMENTS
+// HOMEWORK 7 - FAN REGISTRATION FORM
 // ========================================
 
 const fanForm = document.querySelector("#fan-registration-form");
@@ -200,21 +198,13 @@ const formSuccess = document.querySelector("#form-success");
 
 console.log("Fan registration form elements selected.");
 
-
-// ========================================
-// HOMEWORK 7 - FORM SUBMISSION AND VALIDATION
-// ========================================
-
 fanForm.addEventListener("submit", function (event) {
-    // Prevent the browser from reloading the page.
     event.preventDefault();
 
-    // Clear previous feedback.
     formErrors.textContent = "";
     formSuccess.textContent = "";
     formSuccess.hidden = true;
 
-    // Read and clean the submitted values.
     const fanName = fanNameInput.value.trim();
     const fanEmail = fanEmailInput.value.trim();
     const fanAge = Number(fanAgeInput.value);
@@ -227,14 +217,12 @@ fanForm.addEventListener("submit", function (event) {
 
     const errors = [];
 
-    // Validation rule 1: required name and minimum name length.
     if (fanName === "") {
         errors.push("Please enter your name.");
     } else if (fanName.length < 2 || fanName.length > 60) {
         errors.push("Your name must be between 2 and 60 characters.");
     }
 
-    // Validation rule 2: required and correctly formatted email.
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (fanEmail === "") {
@@ -243,7 +231,6 @@ fanForm.addEventListener("submit", function (event) {
         errors.push("Please enter a valid email address.");
     }
 
-    // Validation rule 3: age must be a number from 13 to 120.
     if (
         fanAgeInput.value.trim() === "" ||
         !Number.isFinite(fanAge) ||
@@ -253,17 +240,14 @@ fanForm.addEventListener("submit", function (event) {
         errors.push("Age must be a number between 13 and 120.");
     }
 
-    // Validation rule 4: a favorite team must be selected.
     if (selectedTeam === "") {
         errors.push("Please select your favorite NFL team.");
     }
 
-    // Validation rule 5: the user must choose a content preference.
     if (contentPreference === null) {
         errors.push("Please select your preferred content type.");
     }
 
-    // Validation rule 6: comments must contain at least 10 characters.
     if (fanComments.length < 10) {
         errors.push(
             "Please enter at least 10 characters about what you want to learn."
@@ -272,21 +256,16 @@ fanForm.addEventListener("submit", function (event) {
         errors.push("Your comments cannot exceed 500 characters.");
     }
 
-    // Validation rule 7: require confirmation.
     if (!fanAgreement) {
         errors.push("Please confirm that your information is correct.");
     }
 
-    // Display validation errors on the page.
     if (errors.length > 0) {
         formErrors.textContent = errors.join(" ");
-
         console.log("Form validation failed:", errors);
-
         return;
     }
 
-    // Create a clean object when every validation rule passes.
     const fanPayload = {
         name: fanName,
         email: fanEmail,
@@ -297,10 +276,8 @@ fanForm.addEventListener("submit", function (event) {
         informationConfirmed: fanAgreement
     };
 
-    // Print the object for the assignment reviewer.
     console.log("Fan registration payload:", fanPayload);
 
-    // Display a success message on the page.
     formSuccess.textContent =
         "Thank you, " + fanPayload.name +
         "! Your fan registration was completed successfully. " +
@@ -309,17 +286,10 @@ fanForm.addEventListener("submit", function (event) {
         fanPayload.contentPreference + ".";
 
     formSuccess.hidden = false;
-
-    // Move keyboard focus to the success message.
     formSuccess.focus();
 
     console.log("Fan registration completed successfully.");
 });
-
-
-// ========================================
-// HOMEWORK 7 - CLEAR OLD ERRORS AS USERS EDIT
-// ========================================
 
 fanForm.addEventListener("input", function () {
     formErrors.textContent = "";
@@ -335,9 +305,299 @@ fanForm.addEventListener("change", function () {
 
 
 // ========================================
+// HOMEWORK 8 - API ELEMENTS
+// ========================================
+
+const postsContainer = document.querySelector("#posts-container");
+const postsStatus = document.querySelector("#posts-status");
+const loadPostsButton = document.querySelector("#load-posts-button");
+
+const apiPostForm = document.querySelector("#api-post-form");
+const apiPostTitle = document.querySelector("#api-post-title");
+const apiPostBody = document.querySelector("#api-post-body");
+const submitPostButton = document.querySelector("#submit-post-button");
+
+const postStatus = document.querySelector("#post-status");
+const createdPostContainer = document.querySelector(
+    "#created-post-container"
+);
+
+const postsURL = "https://jsonplaceholder.typicode.com/posts";
+
+console.log("API explorer elements selected.");
+
+
+// ========================================
+// HOMEWORK 8 - DISPLAY API STATUS
+// ========================================
+
+function displayAPIStatus(element, message, state) {
+    element.textContent = message;
+
+    element.classList.remove(
+        "api-loading",
+        "api-error",
+        "api-success"
+    );
+
+    if (state) {
+        element.classList.add("api-" + state);
+    }
+}
+
+
+// ========================================
+// HOMEWORK 8 - RENDER ONE POST
+// ========================================
+
+function createPostCard(post) {
+    const article = document.createElement("article");
+    article.classList.add("api-post-card");
+
+    const postId = document.createElement("p");
+    postId.classList.add("api-post-id");
+    postId.textContent = "Post ID: " + post.id;
+
+    const title = document.createElement("h3");
+    title.textContent = post.title;
+
+    const body = document.createElement("p");
+    body.textContent = post.body;
+
+    article.append(postId, title, body);
+
+    return article;
+}
+
+
+// ========================================
+// HOMEWORK 8 - GET REQUEST
+// ========================================
+
+async function loadPosts() {
+    displayAPIStatus(
+        postsStatus,
+        "Loading posts from JSONPlaceholder...",
+        "loading"
+    );
+
+    loadPostsButton.disabled = true;
+    postsContainer.replaceChildren();
+
+    console.log("Starting GET request:", postsURL);
+
+    try {
+        const response = await fetch(postsURL + "?_limit=5");
+
+        console.log("GET response status:", response.status);
+
+        // Check whether the HTTP request succeeded.
+        if (!response.ok) {
+            throw new Error(
+                "The server returned status " + response.status
+            );
+        }
+
+        // Parse the JSON response.
+        const posts = await response.json();
+
+        console.log("GET request successful. Posts received:", posts);
+
+        if (!Array.isArray(posts) || posts.length === 0) {
+            displayAPIStatus(
+                postsStatus,
+                "The request succeeded, but no posts were returned.",
+                "error"
+            );
+
+            return;
+        }
+
+        // Create each post element dynamically.
+        const postElements = posts.map(function (post) {
+            return createPostCard(post);
+        });
+
+        postsContainer.replaceChildren(...postElements);
+
+        displayAPIStatus(
+            postsStatus,
+            "Success! Loaded " + posts.length +
+            " posts from JSONPlaceholder.",
+            "success"
+        );
+
+    } catch (error) {
+        console.error("GET request failed:", error);
+
+        displayAPIStatus(
+            postsStatus,
+            "Sorry, the posts could not be loaded. Check your internet " +
+            "connection and try again.",
+            "error"
+        );
+
+    } finally {
+        loadPostsButton.disabled = false;
+    }
+}
+
+
+// ========================================
+// HOMEWORK 8 - LOAD BUTTON
+// ========================================
+
+loadPostsButton.addEventListener("click", function () {
+    loadPosts();
+});
+
+
+// ========================================
+// HOMEWORK 8 - POST REQUEST
+// ========================================
+
+async function createPost(title, body) {
+    const postData = {
+        title: title,
+        body: body,
+        userId: 1
+    };
+
+    displayAPIStatus(
+        postStatus,
+        "Sending your post to JSONPlaceholder...",
+        "loading"
+    );
+
+    submitPostButton.disabled = true;
+    createdPostContainer.replaceChildren();
+
+    console.log("Starting POST request:", postData);
+
+    try {
+        const response = await fetch(postsURL, {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+
+            body: JSON.stringify(postData)
+        });
+
+        console.log("POST response status:", response.status);
+
+        // Do not treat an unsuccessful HTTP response as success.
+        if (!response.ok) {
+            throw new Error(
+                "The server returned status " + response.status
+            );
+        }
+
+        // Parse the returned JSON record.
+        const createdPost = await response.json();
+
+        console.log("POST request successful. Returned record:", createdPost);
+
+        // Render the returned record on the page.
+        const resultCard = document.createElement("article");
+        resultCard.classList.add("created-post-card");
+
+        const resultHeading = document.createElement("h4");
+        resultHeading.textContent = "Post Created Successfully";
+
+        const resultId = document.createElement("p");
+        resultId.textContent = "Returned post ID: " + createdPost.id;
+
+        const resultTitle = document.createElement("p");
+        resultTitle.textContent = "Title: " + createdPost.title;
+
+        const resultBody = document.createElement("p");
+        resultBody.textContent = "Message: " + createdPost.body;
+
+        const resultNote = document.createElement("p");
+        resultNote.textContent =
+            "This is a simulated record. JSONPlaceholder does not " +
+            "permanently save created posts.";
+
+        resultCard.append(
+            resultHeading,
+            resultId,
+            resultTitle,
+            resultBody,
+            resultNote
+        );
+
+        createdPostContainer.replaceChildren(resultCard);
+
+        displayAPIStatus(
+            postStatus,
+            "Success! The POST request returned a record.",
+            "success"
+        );
+
+        // Return the created record for potential future use.
+        return createdPost;
+
+    } catch (error) {
+        console.error("POST request failed:", error);
+
+        displayAPIStatus(
+            postStatus,
+            "Sorry, your post could not be submitted. Check your " +
+            "connection and try again.",
+            "error"
+        );
+
+        return null;
+
+    } finally {
+        submitPostButton.disabled = false;
+    }
+}
+
+
+// ========================================
+// HOMEWORK 8 - POST FORM SUBMISSION
+// ========================================
+
+apiPostForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const title = apiPostTitle.value.trim();
+    const body = apiPostBody.value.trim();
+
+    if (title === "" || body === "") {
+        displayAPIStatus(
+            postStatus,
+            "Please enter both a title and a message.",
+            "error"
+        );
+
+        return;
+    }
+
+    const createdPost = await createPost(title, body);
+
+    if (createdPost !== null) {
+        apiPostForm.reset();
+    }
+});
+
+
+// ========================================
+// HOMEWORK 8 - INITIAL GET REQUEST
+// ========================================
+
+// Load five posts when the page opens.
+loadPosts();
+
+
+// ========================================
 // FINAL DEBUGGING MESSAGE
 // ========================================
 
 console.log("NFL for Beginners JavaScript loaded successfully.");
 console.log("NFL DOM interactions are ready.");
 console.log("NFL fan registration form is ready.");
+console.log("JSONPlaceholder API explorer is ready.");
